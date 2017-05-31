@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="易到接口自动化测试报告" allow-return-values="true">
+  <parameter name="maxRetries"  value="5"/>   
+  <test name="InterfaceTest">
+	 
+	 <!--
+	 <listener class-name="com.letvyidao.listener.TestngListener" /> 
+	  -->
+	 <listeners>
+	     <listener class-name="com.letvyidao.listener.RetryListener" />
+	  </listeners>
+
+    <classes> 
+	   <class name="com.letvyidao.testCase.TestRetry"></class> 
+   </classes>
+
+  </test>
+</suite>

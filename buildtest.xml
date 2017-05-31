@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Demo" default="send_mail" basedir=".">
+	<property name="test-output.dir" value="xslt_report"></property>
+	
+    <echo  message="Start selenium Grid" />
+    <echo  message="import libs" />
+    <path id="run.classpath">
+        <fileset dir="${basedir}/libs">
+            <include name="*.jar" />
+        </fileset>
+    </path>
+    <taskdef name="testng" classname="org.testng.TestNGAntTask" classpathref="run.classpath" />
+    <target name="clean">
+        <delete dir="bin"/>
+        <delete dir="test-output"/>
+        <delete file="report.zip"/>
+    </target>
+    <target name="compile" depends="clean">
+        <echo message="mkdir"/>
+        <mkdir dir="bin"/>
+        <javac srcdir="src" destdir="bin" debug="on" encoding="UTF-8" includeantruntime="true">
+            <classpath refid="run.classpath"/>
+        </javac>
+    </target>
+    <path id="runpath">
+         <path refid="run.classpath"/>
+         <pathelement location="bin"/>
+    </path>
+     <target name="run" depends="compile">
+     <testng  classpathref="runpath"  outputDir="test-output" haltonfailure="false" useDefaultListeners="true">
+          <jvmarg value="-Dfile.encoding=UTF-8" />
+          <xmlfileset dir="${basedir}" includes="testngtest.xml"/>
+     </testng>    	
+ 	</target>
+	 <target name="transform" depends="run">
+	        <xslt in="${basedir}/test-output/testng-results.xml" style="${basedir}/xslt/testng-results.xsl"  out="${basedir}/xslt_report/index-xlst.html"  >
+	            <!-- you need to specify the directory here again -->
+	            <param name="testNgXslt.outputDir" expression="${basedir}/xslt_report" />
+	            <classpath refid="run.classpath"/>
+	        </xslt>
+	    </target>
+	
+    <!--  压缩测试结果 -->   
+     <target name="run_zip" depends="transform">
+           <zip destfile="output.zip">
+               <zipfileset dir="${test-output.dir}"/>
+           </zip>
+     </target>
+	
+	<!--  发送测试报告  
+    <target name="send_mail" depends="run_zip">
+        <mail mailhost="smtp.yongche.com" subject="易到接口自动化测试报告" mailport="25" user="yaojing@yongche.com" password="tf58228888">
+        <from address="yaojing@yongche.com"></from>
+        <to address="yaojing@yongche.com"></to>
+        <message> 易到接口自动化测试报告见附件，请查收！</message>
+        <fileset dir=".">
+            <include name="*.zip"></include>
+        </fileset>
+        </mail>       
+    </target>
+	 --> 
+	
+	<!--  发送测试报告   --> 
+    <target name="send_mail" depends="run_zip">
+        <mail mailhost="smtp.yongche.com" subject="易到接口自动化测试报告" mailport="25" user="yaojing@yongche.com" password="tf58228888">
+        <from address="yaojing@yongche.com"></from>
+        <to address="yaojing@yongche.com"></to>
+        <message> 易到接口自动化测试报告见附件，请查收！</message>
+        <fileset dir="./test-output">
+            <include name="*emailable-report.html"></include>
+        </fileset>
+        </mail>       
+    </target>
+	
+	
+</project>

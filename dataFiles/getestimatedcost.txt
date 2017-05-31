@@ -1,0 +1,13 @@
+city#bj
+car_type_id#3
+product_type_id#1
+start_latitude#40.694021
+start_longitude#117.160530
+end_latitude#39.769411
+end_longitude#116.219263
+time_length#1800
+start_time#1483065836
+in_coord_type#baidu
+corp_id#
+passenger_phone#13391951392
+is_asap#1

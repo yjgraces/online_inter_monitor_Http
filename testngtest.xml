@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="易到接口自动化测试报告" allow-return-values="true">
+  <parameter name="maxRetries"  value="2"/>   
+  <test name="InterfaceTest">
+	  <!--	 
+	 <listeners>
+	     <listener class-name="com.letvyidao.listener.TestngListener" />
+	     <listener class-name="com.letvyidao.listener.RetryListener" />
+	  </listeners>
+ 
+	        <class name="com.letvyidao.inter.Order">
+         <methods>
+             <exclude name="testOrder_qlcPay"></exclude>
+         </methods>
+      </class>
+      <class name="com.letvyidao.inter.DispatchSeries"></class> 
+	  	<class name="com.letvyidao.inter.LBSInter"></class>
+	  	<class name="com.letvyidao.testCase.CreatOrderProcess"></class>
+	-->
+	
+    <classes> 
+   
+
+	   <class name="com.letvyidao.inter.AppApiInter">
+             <methods>
+             <exclude name="testV7PriceAll"></exclude>
+            
+             </methods>
+       </class> 
+
+      <class name="com.letvyidao.inter.CategryTools">
+      	<methods>
+      		<exclude name="testCacheNoDiff"></exclude>
+      	</methods>
+      
+      </class>   
+   
+      <class name="com.letvyidao.inter.DriverInter"></class>
+
+   </classes>
+
+  </test>
+</suite>

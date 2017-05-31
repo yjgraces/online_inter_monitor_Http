@@ -1,0 +1,8 @@
+oauth_nonce#1485226297
+oauth_signature#5sARLGoVkNAPhh5wq1Hl95crWIk
+oauth_token#cfb27322d7d4a032f0aab305d0b4985f05874c6ad
+,oauth_consumer_key#4821726c1947cdf3eebacade98173939
+oauth_token_secret#b6dccbefdd64952c26c28d1dfc82718e
+oauth_signature_method#PLAINTEXT
+oauth_timestamp#1485225297
+oauth_version#1.0
